@@ -12,10 +12,10 @@ Tap any card to expand key points to revise.
 
 | Subject | Link |
 |---|---|
-| 📜 History | [Open →](https://SniperShqrk.github.io/jc-2026-predictions/jc-history-2026.html) |
-| 🔬 Science | [Open →](https://SniperShqrk.github.io/jc-2026-predictions/jc-science-2026.html) |
-| ✝️ Religion | [Open →](https://SniperShqrk.github.io/jc-2026-predictions/jc-religion-2026.html) |
-| ⚙️ Engineering | [Open →](https://SniperShqrk.github.io/jc-2026-predictions/jc-engineering-2026.html) |
+| 📜 History | [Open →](https://snipershqrk.github.io/JC-2026-Predictions/jc-history-2026.html) |
+| 🔬 Science | [Open →](https://snipershqrk.github.io/JC-2026-Predictions/jc-science-2026.html) |
+| ✝️ Religion | [Open →](https://snipershqrk.github.io/JC-2026-Predictions/jc-religion-2026.html) |
+| ⚙️ Engineering | [Open →](https://snipershqrk.github.io/JC-2026-Predictions//jc-engineering-2026.html) |
 
 ---
 
