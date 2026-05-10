@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>JC Engineering 2026 Predictions</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#0a0a0f;color:#e2e8f0;font-family:Georgia,serif;min-height:100vh;}
+#header{background:linear-gradient(135deg,#0f172a 0%,#0f1f2e 50%,#0f172a 100%);border-bottom:1px solid #334155;padding:1.8rem 1.2rem 1.4rem;text-align:center;}
+.eyebrow{font-size:.6rem;letter-spacing:.28em;color:#64748b;text-transform:uppercase;margin-bottom:.5rem;}
+h1{font-size:clamp(1.3rem,5vw,2rem);font-weight:bold;margin:0 0 .25rem;background:linear-gradient(90deg,#e2e8f0,#fb923c,#e2e8f0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+#header p{color:#64748b;font-size:.75rem;}
+.stats{display:flex;justify-content:center;gap:2rem;margin-top:1.1rem;flex-wrap:wrap;}
+.stat-val{font-size:1.5rem;font-weight:bold;font-family:monospace;}
+.stat-lbl{font-size:.6rem;color:#64748b;letter-spacing:.05em;}
+.filters{display:flex;gap:.5rem;padding:1rem 1rem 0;justify-content:center;flex-wrap:wrap;}
+.filters button{padding:.38rem 1rem;border-radius:999px;border:1px solid #334155;background:transparent;color:#64748b;cursor:pointer;font-size:.7rem;letter-spacing:.08em;font-family:monospace;-webkit-tap-highlight-color:transparent;}
+.filters button.active{border-color:#fb923c;background:#1a0e00;color:#fb923c;}
+#cards{padding:.9rem .9rem 3rem;display:flex;flex-direction:column;gap:.6rem;max-width:700px;margin:0 auto;}
+.card{border-radius:8px;padding:.85rem 1rem;border:1px solid;border-left-width:3px;}
+.card.HOT{background:#052414;border-color:#16a34a55;border-left-color:#16a34a;}
+.card.WARM{background:#1a1000;border-color:#d9770655;border-left-color:#d97706;}
+.card.COLD{background:#0c0c1e;border-color:#4338ca55;border-left-color:#4338ca;}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;}
+.badges{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;}
+.badge-pred{font-size:.57rem;padding:.12rem .45rem;border-radius:4px;font-family:monospace;letter-spacing:.1em;}
+.HOT .badge-pred{background:#16a34a33;color:#4ade80;}
+.WARM .badge-pred{background:#d9770633;color:#fbbf24;}
+.COLD .badge-pred{background:#4338ca33;color:#818cf8;}
+.badge-strand{font-size:.57rem;color:#475569;font-family:monospace;}
+.card-title{font-size:.92rem;font-weight:bold;margin-top:.28rem;color:#e2e8f0;}
+.arrow{font-size:.72rem;flex-shrink:0;margin-top:.25rem;}
+.HOT .arrow{color:#4ade80;}
+.WARM .arrow{color:#fbbf24;}
+.COLD .arrow{color:#818cf8;}
+.years{display:flex;gap:.32rem;margin-top:.48rem;flex-wrap:wrap;}
+.yr{font-size:.57rem;font-family:monospace;padding:.14rem .42rem;border-radius:4px;border:1px solid;}
+.yr.hit.HOT{background:#16a34a22;color:#4ade80;border-color:#16a34a55;}
+.yr.hit.WARM{background:#d9770622;color:#fbbf24;border-color:#d9770655;}
+.yr.hit.COLD{background:#4338ca22;color:#818cf8;border-color:#4338ca55;}
+.yr.miss{background:#1e293b;color:#475569;border-color:#334155;}
+.note{font-size:.7rem;color:#94a3b8;margin-top:.38rem;line-height:1.45;}
+.key-points{margin-top:.65rem;padding-top:.65rem;border-top:1px solid;}
+.HOT .key-points{border-color:#16a34a33;}
+.WARM .key-points{border-color:#d9770633;}
+.COLD .key-points{border-color:#4338ca33;}
+.kp-label{font-size:.56rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.38rem;}
+.HOT .kp-label{color:#4ade80;}
+.WARM .kp-label{color:#fbbf24;}
+.COLD .kp-label{color:#818cf8;}
+.kp-item{font-size:.74rem;color:#cbd5e1;padding:.18rem 0;display:flex;gap:.38rem;}
+.HOT .kp-item span:first-child{color:#4ade80;}
+.WARM .kp-item span:first-child{color:#fbbf24;}
+.COLD .kp-item span:first-child{color:#818cf8;}
+footer{text-align:center;padding:1rem;color:#334155;font-size:.57rem;letter-spacing:.05em;border-top:1px solid #1e293b;}
+</style>
+</head>
+<body>
+<div id="header">
+  <div class="eyebrow">Junior Certificate Engineering · Common Level · Pattern Analysis 2022–2025</div>
+  <h1>Engineering 2026 Predictions</h1>
+  <p>4 questions · context-based · each Q mixes topics · tap a card for key points</p>
+  <div class="stats">
+    <div><div class="stat-val" style="color:#4ade80" id="cnt-hot">0</div><div class="stat-lbl">🔥 High</div></div>
+    <div><div class="stat-val" style="color:#fbbf24" id="cnt-warm">0</div><div class="stat-lbl">⚡ Medium</div></div>
+    <div><div class="stat-val" style="color:#818cf8" id="cnt-cold">0</div><div class="stat-lbl">❄️ Low</div></div>
+  </div>
+</div>
+<div class="filters">
+  <button class="active" onclick="setFilter('ALL',this)">SHOW ALL</button>
+  <button onclick="setFilter('HOT',this)">🔥 HIGH</button>
+  <button onclick="setFilter('WARM',this)">⚡ MEDIUM</button>
+  <button onclick="setFilter('COLD',this)">❄️ LOW</button>
+</div>
+<div id="cards"></div>
+<footer>SOURCE: SEC JC Engineering Papers & Marking Schemes 2022–2025 · Pattern only — not official SEC guidance</footer>
+<script>
+var topics=[
+{t:"Welding Processes",s:"Manufacturing",y:{2022:"Q2",2023:"Q2",2024:"Q2",2025:"–"},p:"HOT",n:"Featured in Q2 every year from 2022–2024, completely absent in 2025. Near-certain to return.",k:["MIG (Metal Inert Gas): continuous wire feed, fast, good for thick metals","TIG (Tungsten Inert Gas): precise, thin metals, stainless steel","Arc welding: electrode rod, flux coating, cheapest method","Oxy-acetylene: gas welding/cutting torch","Spot welding: two copper electrodes, joins sheet metal (car bodies)","Safety: goggles/visor, gloves, no flammable materials nearby"]},
+{t:"Gear Mechanisms & Gear Ratios",s:"Mechanisms",y:{2022:"Q3",2023:"Q3",2024:"Q3",2025:"–"},p:"HOT",n:"Gear calculations appeared in Q3 every year 2022–2024, absent 2025. Very overdue.",k:["Gear ratio = teeth on driven ÷ teeth on driver","If driven > driver → speed decreases, torque increases (reduction)","If driven < driver → speed increases (step-up)","Speed of driven = (driver teeth ÷ driven teeth) × driver speed","Spur gears, bevel gears, rack and pinion — know each use"]},
+{t:"Marking Out Tools & Processes",s:"Benchwork",y:{2022:"Q1",2023:"Q1",2024:"Q1",2025:"–"},p:"HOT",n:"Marking out featured in Q1 every year 2022–2024. Not in 2025 — certain to return.",k:["Scriber: scratches lines on metal","Try square: checks 90° angles","Odd-leg (Jenny) calipers: scribes parallel lines from an edge","Dot punch: marks centre of a hole before drilling","Marking blue (engineer's blue): applied to surface so scribed lines show clearly","Surface plate: flat reference surface for marking out"]},
+{t:"Ferrous vs Non-Ferrous Metals",s:"Materials",y:{2022:"Q1",2023:"Q1",2024:"Q1",2025:"–"},p:"HOT",n:"Metal identification and properties appeared in Section A Q1 every year 2022–2024. Absent 2025.",k:["Ferrous = contains iron (rusts): mild steel, cast iron, high-speed steel, stainless steel","Non-ferrous = no iron (no rust): aluminium, copper, brass, bronze","Mild steel: cheap, weldable, used for car bodies/structures","Aluminium: light, corrosion-resistant, good conductor","Copper: best electrical conductor, used in wiring and plumbing","Brass = copper + zinc · Bronze = copper + tin"]},
+{t:"Structures (Forces, Beams, Bridges)",s:"Structures",y:{2022:"Q4",2023:"Q4",2024:"Q4",2025:"–"},p:"HOT",n:"Structures was Q4 every year 2022–2024. Completely absent in 2025. Very high priority.",k:["Tension: force pulling material apart (cables, ropes)","Compression: force squeezing material (columns, pillars)","Shear: force sliding layers past each other (scissors, bolts)","Torsion: twisting force (driveshaft)","Types of beams: simply supported, cantilever","Triangles make rigid structures (bridges, roof trusses)"]},
+{t:"Drilling (processes, drill bits, speeds)",s:"Manufacturing",y:{2022:"Q2",2023:"Q2",2024:"Q2",2025:"–"},p:"HOT",n:"Drilling appeared in Q2 every year 2022–2024. Not in 2025.",k:["Twist drill: most common, two cutting edges","Countersink bit: creates V-shaped recess for screw heads","Flat bit: large holes in wood","Step drill: multiple diameters in one bit","Cutting speed: softer material = higher speed","Cutting fluid: keeps drill cool and lubricated","Safety: clamp workpiece, no loose clothing, safety glasses"]},
+{t:"Rendered Sketching (design drawings)",s:"Design",y:{2022:"Q1",2023:"Q1",2024:"Q1",2025:"Q2/Q4"},p:"HOT",n:"Always in the paper — a rendered sketch is required every year. Practise shading.",k:["Use 3B pencil for shading, H pencil for outlines","Shade one face dark, one medium, one light","Apply shade in direction of form","Add a cast shadow at base of object","Use curved lines to show cylindrical surfaces","Keep lines clean — sketch proportionally to grid if given"]},
+{t:"Heat Treatment of Metals",s:"Materials",y:{2022:"Q3",2023:"Q3",2024:"Q3",2025:"Q3"},p:"WARM",n:"Appeared in every paper in Q3. In 2025 it was forklift forks. Will likely appear again.",k:["Hardening: heat to cherry red (800°C), quench in water/oil → hard but brittle","Tempering: reheat to lower temp (200–300°C), air cool → reduces brittleness","Annealing: heat fully, cool very slowly (in furnace) → makes soft and workable","Case hardening: surface only hardened — tough core, hard shell","normalising: heat + air cool → relieves internal stress"]},
+{t:"Electronic Components (matching)",s:"Electronics",y:{2022:"Q4",2023:"Q4",2024:"Q4",2025:"Q4"},p:"WARM",n:"Always appears in Q4. 2025 had matching of 5 components. Certain in 2026 too.",k:["Resistor: limits current flow","Capacitor: stores charge temporarily","LED: emits light when current flows (one direction only)","Transistor: amplifies or switches signals","Diode: allows current in one direction only","DC motor: converts electrical to rotational energy","LDR (light dependent resistor): resistance decreases with more light"]},
+{t:"Cam Mechanisms",s:"Mechanisms",y:{2022:"Q3",2023:"Q3",2024:"–",2025:"–"},p:"WARM",n:"Not seen in 2024 or 2025. Cam profiles are on the syllabus.",k:["Cam converts rotary → reciprocating (up/down) motion","Follower types: knife edge, roller, flat-faced","Pear-shaped cam: long dwell, quick rise/fall","Heart cam: constant velocity rise and fall","Eccentric cam: off-centre circle, smooth motion","Cam used in: engine valves, music boxes, machinery"]},
+{t:"Joining Methods (rivets, adhesives, bolts)",s:"Assembly",y:{2022:"Q2",2023:"Q2",2024:"Q2",2025:"–"},p:"WARM",n:"Joining was in Q2 every year 2022–2024. Not in 2025 — likely to return.",k:["Pop rivet: quick join for thin sheet metal","Countersunk rivet: flush finish (aircraft panels)","Nut and bolt: removable join, needs access to both sides","Machine screw: into tapped hole, no nut needed","Epoxy resin adhesive: two-part, very strong permanent bond","Solder: low-melting alloy, used for electronics"]},
+{t:"Plastics (types and properties)",s:"Materials",y:{2022:"Q1",2023:"Q1",2024:"Q1",2025:"Q1/Q2"},p:"WARM",n:"Always appears but 2025 covered HDPE, polyethylene, thermoplastics. Same angle unlikely.",k:["Thermoplastics: re-melt when heated — ABS, acrylic, nylon, HDPE, PVC","Thermosetting: set permanently — epoxy, Bakelite, melamine","ABS: tough, impact resistant, used for car dashboards, LEGO","Acrylic (Perspex): transparent, rigid, used for displays/signs","Nylon: tough, self-lubricating, used for gears/bearings","HDPE: chemical resistant, used for pipes and bottles"]},
+{t:"Health & Safety",s:"Safety",y:{2022:"Q1",2023:"Q1",2024:"Q1",2025:"Q1*"},p:"WARM",n:"Always integrated somewhere. Usually 2–3 marks on correct PPE or lab rules.",k:["Safety glasses/goggles: always in engineering lab","Ear defenders: when using noisy machinery","Gloves: welding, handling sharp metal","Tie back long hair and tuck in loose clothing","Clamp workpiece before drilling or cutting","Fire extinguisher: know types — CO2 for electrical fires"]},
+{t:"3D Printing",s:"CAD/CNC",y:{2022:"–",2023:"–",2024:"Q2",2025:"Q4"},p:"COLD",n:"Just appeared in 2025 Q4. Less likely as the main CAD/CNC question in 2026.",k:[]},
+{t:"Lathe Processes",s:"Manufacturing",y:{2022:"Q2",2023:"Q2",2024:"Q2",2025:"Q2"},p:"COLD",n:"Appeared in 2025 Q2 (facing, parallel turning, knurling). Unlikely to be a heavy focus again.",k:[]},
+{t:"Hydraulics & Pneumatics",s:"Mechanisms",y:{2022:"–",2023:"–",2024:"–",2025:"Q3"},p:"COLD",n:"Just appeared in 2025 Q3.",k:[]},
+{t:"Pulley & Belt Drive Calculations",s:"Mechanisms",y:{2022:"Q3",2023:"–",2024:"–",2025:"Q4"},p:"COLD",n:"Pulley speed calculations just appeared in 2025 Q4.",k:[]},
+{t:"Logic Gates (AND, OR, NOT, NAND)",s:"Electronics",y:{2022:"–",2023:"Q4",2024:"Q4",2025:"Q3"},p:"COLD",n:"Logic gates appeared in 2025 Q3 (AND gate + NOT gate truth tables). Skip for now.",k:[]},
+{t:"Smart / New Materials",s:"Materials",y:{2022:"–",2023:"–",2024:"Q1",2025:"Q1"},p:"COLD",n:"Smart materials appeared in both 2024 and 2025. Skip.",k:[]},
+{t:"CNC Machining",s:"CAD/CNC",y:{2022:"–",2023:"Q2",2024:"Q2",2025:"Q2"},p:"COLD",n:"CNC was in 2025 Q2. Less likely to be the focus again.",k:[]}
+];
+var YEARS=[2022,2023,2024,2025];
+var LABELS={HOT:"🔥 HIGH",WARM:"⚡ MEDIUM",COLD:"❄️ LOW"};
+var currentFilter="ALL";
+var expanded={};
+function setFilter(f,btn){currentFilter=f;document.querySelectorAll(".filters button").forEach(function(b){b.classList.remove("active");});btn.classList.add("active");render();}
+function toggle(idx){expanded[idx]=!expanded[idx];render();}
+function render(){
+  var shown=topics.filter(function(t){return currentFilter==="ALL"||t.p===currentFilter;});
+  document.getElementById("cnt-hot").textContent=topics.filter(function(t){return t.p==="HOT";}).length;
+  document.getElementById("cnt-warm").textContent=topics.filter(function(t){return t.p==="WARM";}).length;
+  document.getElementById("cnt-cold").textContent=topics.filter(function(t){return t.p==="COLD";}).length;
+  var c=document.getElementById("cards");
+  c.innerHTML=shown.map(function(t){
+    var realIdx=topics.indexOf(t);
+    var hasK=t.k&&t.k.length>0;
+    var isOpen=!!expanded[realIdx];
+    var yrHTML=YEARS.map(function(y){var v=t.y[y];var hit=v&&v!=="–";return '<span class="yr '+(hit?"hit "+t.p:"miss")+'">'+ y+": "+(v||"–")+"</span>";}).join("");
+    var kpHTML="";
+    if(isOpen&&hasK){kpHTML='<div class="key-points"><div class="kp-label">Key Points</div>'+t.k.map(function(kp){return '<div class="kp-item"><span>›</span><span>'+kp+'</span></div>';}).join("")+'</div>';}
+    var clickAttr=hasK?'onclick="toggle('+realIdx+')" style="cursor:pointer"':'';
+    return '<div class="card '+t.p+'" '+clickAttr+'><div class="card-top"><div style="flex:1"><div class="badges"><span class="badge-pred">'+LABELS[t.p]+'</span><span class="badge-strand">'+t.s+'</span></div><div class="card-title">'+t.t+'</div></div>'+(hasK?'<div class="arrow">'+(isOpen?"▲":"▼")+'</div>':"")+
+    '</div><div class="years">'+yrHTML+'</div><div class="note">'+t.n+'</div>'+kpHTML+'</div>';
+  }).join("");
+}
+render();
+</script>
+</body>
+</html>

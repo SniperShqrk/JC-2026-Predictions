@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>JC Religion 2026 Predictions</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#0a0a0f;color:#e2e8f0;font-family:Georgia,serif;min-height:100vh;}
+#header{background:linear-gradient(135deg,#0f172a 0%,#1e1020 50%,#0f172a 100%);border-bottom:1px solid #334155;padding:1.8rem 1.2rem 1.4rem;text-align:center;}
+.eyebrow{font-size:.6rem;letter-spacing:.28em;color:#64748b;text-transform:uppercase;margin-bottom:.5rem;}
+h1{font-size:clamp(1.3rem,5vw,2rem);font-weight:bold;margin:0 0 .25rem;background:linear-gradient(90deg,#e2e8f0,#c084fc,#e2e8f0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+#header p{color:#64748b;font-size:.75rem;}
+.stats{display:flex;justify-content:center;gap:2rem;margin-top:1.1rem;flex-wrap:wrap;}
+.stat-val{font-size:1.5rem;font-weight:bold;font-family:monospace;}
+.stat-lbl{font-size:.6rem;color:#64748b;letter-spacing:.05em;}
+.filters{display:flex;gap:.5rem;padding:1rem 1rem 0;justify-content:center;flex-wrap:wrap;}
+.filters button{padding:.38rem 1rem;border-radius:999px;border:1px solid #334155;background:transparent;color:#64748b;cursor:pointer;font-size:.7rem;letter-spacing:.08em;font-family:monospace;-webkit-tap-highlight-color:transparent;}
+.filters button.active{border-color:#c084fc;background:#1a0a2e;color:#c084fc;}
+#cards{padding:.9rem .9rem 3rem;display:flex;flex-direction:column;gap:.6rem;max-width:700px;margin:0 auto;}
+.card{border-radius:8px;padding:.85rem 1rem;border:1px solid;border-left-width:3px;}
+.card.HOT{background:#052414;border-color:#16a34a55;border-left-color:#16a34a;}
+.card.WARM{background:#1a1000;border-color:#d9770655;border-left-color:#d97706;}
+.card.COLD{background:#0c0c1e;border-color:#4338ca55;border-left-color:#4338ca;}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;}
+.badges{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;}
+.badge-pred{font-size:.57rem;padding:.12rem .45rem;border-radius:4px;font-family:monospace;letter-spacing:.1em;}
+.HOT .badge-pred{background:#16a34a33;color:#4ade80;}
+.WARM .badge-pred{background:#d9770633;color:#fbbf24;}
+.COLD .badge-pred{background:#4338ca33;color:#818cf8;}
+.badge-strand{font-size:.57rem;color:#475569;font-family:monospace;}
+.card-title{font-size:.92rem;font-weight:bold;margin-top:.28rem;color:#e2e8f0;}
+.arrow{font-size:.72rem;flex-shrink:0;margin-top:.25rem;}
+.HOT .arrow{color:#4ade80;}
+.WARM .arrow{color:#fbbf24;}
+.COLD .arrow{color:#818cf8;}
+.years{display:flex;gap:.32rem;margin-top:.48rem;flex-wrap:wrap;}
+.yr{font-size:.57rem;font-family:monospace;padding:.14rem .42rem;border-radius:4px;border:1px solid;}
+.yr.hit.HOT{background:#16a34a22;color:#4ade80;border-color:#16a34a55;}
+.yr.hit.WARM{background:#d9770622;color:#fbbf24;border-color:#d9770655;}
+.yr.hit.COLD{background:#4338ca22;color:#818cf8;border-color:#4338ca55;}
+.yr.miss{background:#1e293b;color:#475569;border-color:#334155;}
+.note{font-size:.7rem;color:#94a3b8;margin-top:.38rem;line-height:1.45;}
+.key-points{margin-top:.65rem;padding-top:.65rem;border-top:1px solid;}
+.HOT .key-points{border-color:#16a34a33;}
+.WARM .key-points{border-color:#d9770633;}
+.COLD .key-points{border-color:#4338ca33;}
+.kp-label{font-size:.56rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.38rem;}
+.HOT .kp-label{color:#4ade80;}
+.WARM .kp-label{color:#fbbf24;}
+.COLD .kp-label{color:#818cf8;}
+.kp-item{font-size:.74rem;color:#cbd5e1;padding:.18rem 0;display:flex;gap:.38rem;}
+.HOT .kp-item span:first-child{color:#4ade80;}
+.WARM .kp-item span:first-child{color:#fbbf24;}
+.COLD .kp-item span:first-child{color:#818cf8;}
+footer{text-align:center;padding:1rem;color:#334155;font-size:.57rem;letter-spacing:.05em;border-top:1px solid #1e293b;}
+</style>
+</head>
+<body>
+<div id="header">
+  <div class="eyebrow">Junior Certificate Religious Education · Common Level · Pattern Analysis 2022–2025</div>
+  <h1>Religion 2026 Predictions</h1>
+  <p>3 Sections: A = Exploring Beliefs · B = Exploring Questions · C = Living Our Values</p>
+  <div class="stats">
+    <div><div class="stat-val" style="color:#4ade80" id="cnt-hot">0</div><div class="stat-lbl">🔥 High</div></div>
+    <div><div class="stat-val" style="color:#fbbf24" id="cnt-warm">0</div><div class="stat-lbl">⚡ Medium</div></div>
+    <div><div class="stat-val" style="color:#818cf8" id="cnt-cold">0</div><div class="stat-lbl">❄️ Low</div></div>
+  </div>
+</div>
+<div class="filters">
+  <button class="active" onclick="setFilter('ALL',this)">SHOW ALL</button>
+  <button onclick="setFilter('HOT',this)">🔥 HIGH</button>
+  <button onclick="setFilter('WARM',this)">⚡ MEDIUM</button>
+  <button onclick="setFilter('COLD',this)">❄️ LOW</button>
+</div>
+<div id="cards"></div>
+<footer>SOURCE: SEC JC Religion Papers 2022–2025 · Pattern analysis only — not official SEC guidance</footer>
+<script>
+var topics=[
+{t:"Matching: Sacred Texts to Religions",s:"Sec A/B",y:{2022:"–",2023:"Q2",2024:"Q7",2025:"Q4"},p:"HOT",n:"Appeared in 2023, 2024, and 2025 — this is an almost-guaranteed fixture every year.",k:["Bible → Christianity","Quran (Koran) → Islam","Torah → Judaism","Vedas / Bhagavad Gita → Hinduism","Tripitaka → Buddhism"]},
+{t:"Matching: Religious Beliefs / Concepts",s:"Sec A/B",y:{2022:"Q7",2023:"Q7",2024:"Q5",2025:"Q7"},p:"HOT",n:"Appears EVERY year. A matching exercise on religious concepts is certain.",k:["Nirvana → Buddhism (end of suffering)","Trinity → Christianity (Father, Son, Holy Spirit)","Shahada → Islam (declaration of faith)","Shema → Judaism (hear O Israel prayer)","Four Noble Truths → Buddhism","Reincarnation → Hinduism / Buddhism"]},
+{t:"Religious Festivals",s:"Sec B/C",y:{2022:"–",2023:"Q15",2024:"–",2025:"–"},p:"HOT",n:"Only appeared in 2023. Two years without it — very overdue. Likely Section B or C.",k:["Eid al-Adha: sacrifice of Ibrahim, shared meal, giving to poor","Diwali: festival of lights, triumph of good over evil","Easter: resurrection of Jesus Christ (Christian)","Passover (Pesach): Jewish escape from Egypt (Exodus)","Wesak: birth, enlightenment, death of Buddha"]},
+{t:"Community of Faith (charity / values in action)",s:"Sec B",y:{2022:"–",2023:"Q6/Q7",2024:"–",2025:"–"},p:"HOT",n:"Was a full Section B topic in 2023, absent in 2024 and 2025. Very overdue.",k:["Define community of faith: people sharing beliefs who support each other","Examples: SVP (St Vincent de Paul), Trócaire, CAFOD, Sewa (Sikh service)","Values inspiring action: compassion, justice, solidarity","How a community of faith helps the wider community"]},
+{t:"Sacred Places in Ireland",s:"Sec C",y:{2022:"–",2023:"Q14",2024:"–",2025:"–"},p:"HOT",n:"Only appeared in 2023. Two years without — likely in Section C.",k:["Croagh Patrick: Patrick's Lenten fast, annual pilgrimage","Knock: Marian apparition 1879, national shrine","Glendalough: St Kevin's monastic site","Downpatrick: burial place of St Patrick","Lough Derg: Station Island, penitential pilgrimage"]},
+{t:"Moral Decision-Making",s:"Sec C",y:{2022:"Q12",2023:"Q9/Q10",2024:"Q11/Q12",2025:"Q13"},p:"HOT",n:"Appears EVERY year — certain to feature in 2026. Know the steps clearly.",k:["Steps: identify the issue → consider who is affected → look at values/conscience → decide → reflect","Influences on decisions: family, friends, media, religion, laws, conscience","Conscience = inner sense of right and wrong","Religious teaching shapes moral decisions"]},
+{t:"Care for the Earth",s:"Sec A/C",y:{2022:"–",2023:"Q11/Q12",2024:"Q4",2025:"Q15"},p:"HOT",n:"Three consecutive years (2023, 2024, 2025). Almost certain to appear again.",k:["Catholic Social Teaching: care for creation (Laudato Si)","Buddhist: ahimsa (non-harm) applied to environment","Islamic: khalifa (stewardship of the earth)","Jewish: tikkun olam (repairing the world)","Practical actions: recycling, reducing waste, sustainable farming"]},
+{t:"Meaning of Life / Faith Search",s:"Sec A",y:{2022:"–",2023:"Q1",2024:"Q6",2025:"Q1"},p:"HOT",n:"Appears every year in Section A or B — different angle each time. Essential.",k:["Religious answer: life has meaning given by God / Dharma / Buddha's path","Non-religious answer: meaning is self-created (existentialism)","Art, music, film, literature used to explore meaning","Big questions: Who am I? Why am I here? What happens after death?"]},
+{t:"Religious Symbols",s:"Sec B",y:{2022:"Q8*",2023:"–",2024:"Q8",2025:"–"},p:"WARM",n:"Every 2 years (2022, 2024). Pattern suggests 2026 is possible.",k:["Cross/crucifix → Christianity","Star of David (Magen David) → Judaism","Crescent and star → Islam","Om (Aum) → Hinduism","Dharma wheel (Dharmachakra) → Buddhism","Khanda → Sikhism"]},
+{t:"Places of Worship",s:"Sec B",y:{2022:"Q8/Q10",2023:"–",2024:"Q13",2025:"–"},p:"WARM",n:"Not a main topic in 2025. Matching buildings to religions could return.",k:["Church/cathedral → Christianity","Mosque → Islam","Synagogue → Judaism","Temple/mandir → Hinduism","Vihara/pagoda → Buddhism","Gurdwara → Sikhism"]},
+{t:"Spread of Christianity in Ireland",s:"Sec C",y:{2022:"–",2023:"–",2024:"Q15",2025:"Q6"},p:"WARM",n:"Appeared in both 2024 and 2025. Less likely to repeat but St Patrick is always safe.",k:["St Patrick: brought Christianity to Ireland (432 AD), druids, lighting of Paschal fire","St Brigid: founded monastery at Kildare, care for the poor","St Colmcille (Columba): founded Iona monastery, spread faith to Scotland","Monasteries as centres of learning and prayer"]},
+{t:"Founding Stories / Founders of Religions",s:"Sec A",y:{2022:"Q4/Q5",2023:"–",2024:"–",2025:"Q5"},p:"WARM",n:"Appeared 2022 and 2025 — possible but less urgent given recent appearance.",k:["Jesus Christ: life, death, resurrection (Christianity)","Prophet Muhammad: received Quran in cave at Hira (Islam)","Siddhartha Gautama: enlightenment under Bodhi tree at Bodh Gaya (Buddhism)","Abraham: covenant with God, father of three faiths (Judaism/Christianity/Islam)","Seven Rishis (Hinduism): received Vedas through meditation"]},
+{t:"Origin / Creation of the World",s:"Sec A",y:{2022:"–",2023:"–",2024:"Q1/Q2",2025:"–"},p:"WARM",n:"Full question in 2024 — Big Bang vs religious creation stories. Not in 2025.",k:["Big Bang theory: scientific explanation (not incompatible with faith for many)","Genesis (Christianity/Judaism): God created world in 6 days","Islamic creation: Allah said 'Be!' and it was","Hindu creation: Brahma creates, Vishnu sustains, Shiva destroys","Buddhist: no creator god — focus on suffering and liberation"]},
+{t:"Prayer Forms",s:"Sec B",y:{2022:"Q9/Q10",2023:"–",2024:"Q9/Q10",2025:"Q9"},p:"COLD",n:"Just appeared in 2025 Q9. Skip as a standalone matching question.",k:[]},
+{t:"Stages of Religious Faith",s:"Sec A",y:{2022:"–",2023:"Q3/Q4",2024:"–",2025:"Q2"},p:"COLD",n:"Just appeared in 2025 Q2.",k:[]},
+{t:"Faith Journey / Conversion Story",s:"Sec A",y:{2022:"–",2023:"–",2024:"–",2025:"Q3"},p:"COLD",n:"Clare Crockett story just appeared in 2025.",k:[]},
+{t:"Non-Religious Ceremonies",s:"Sec B/C",y:{2022:"Q1",2023:"–",2024:"Q11",2025:"Q8"},p:"COLD",n:"Appeared in 2025 Q8 (natural burial). Skip.",k:[]},
+{t:"Moral Codes Matching",s:"Sec C",y:{2022:"Q12",2023:"–",2024:"Q3",2025:"Q11"},p:"COLD",n:"Just appeared in 2025 Q11. Skip as standalone.",k:[]},
+{t:"Sacred Texts Role in Believers Lives",s:"Sec A",y:{2022:"–",2023:"Q2",2024:"Q7",2025:"Q4"},p:"COLD",n:"Appeared three years running. Very unlikely to be a main Q again.",k:[]},
+{t:"Compassion / Peace & Reconciliation",s:"Sec C",y:{2022:"Q11/Q13",2023:"–",2024:"–",2025:"Q14"},p:"COLD",n:"Just appeared in 2025 Q14 (Leonard Cheshire). Lower priority.",k:[]}
+];
+var YEARS=[2022,2023,2024,2025];
+var LABELS={HOT:"🔥 HIGH",WARM:"⚡ MEDIUM",COLD:"❄️ LOW"};
+var currentFilter="ALL";
+var expanded={};
+function setFilter(f,btn){currentFilter=f;document.querySelectorAll(".filters button").forEach(function(b){b.classList.remove("active");});btn.classList.add("active");render();}
+function toggle(idx){expanded[idx]=!expanded[idx];render();}
+function render(){
+  var shown=topics.filter(function(t){return currentFilter==="ALL"||t.p===currentFilter;});
+  document.getElementById("cnt-hot").textContent=topics.filter(function(t){return t.p==="HOT";}).length;
+  document.getElementById("cnt-warm").textContent=topics.filter(function(t){return t.p==="WARM";}).length;
+  document.getElementById("cnt-cold").textContent=topics.filter(function(t){return t.p==="COLD";}).length;
+  var c=document.getElementById("cards");
+  c.innerHTML=shown.map(function(t){
+    var realIdx=topics.indexOf(t);
+    var hasK=t.k&&t.k.length>0;
+    var isOpen=!!expanded[realIdx];
+    var yrHTML=YEARS.map(function(y){var v=t.y[y];var hit=v&&v!=="–";return '<span class="yr '+(hit?"hit "+t.p:"miss")+'">'+ y+": "+(v||"–")+"</span>";}).join("");
+    var kpHTML="";
+    if(isOpen&&hasK){kpHTML='<div class="key-points"><div class="kp-label">Key Points</div>'+t.k.map(function(kp){return '<div class="kp-item"><span>›</span><span>'+kp+'</span></div>';}).join("")+'</div>';}
+    var clickAttr=hasK?'onclick="toggle('+realIdx+')" style="cursor:pointer"':'';
+    return '<div class="card '+t.p+'" '+clickAttr+'><div class="card-top"><div style="flex:1"><div class="badges"><span class="badge-pred">'+LABELS[t.p]+'</span><span class="badge-strand">'+t.s+'</span></div><div class="card-title">'+t.t+'</div></div>'+(hasK?'<div class="arrow">'+(isOpen?"▲":"▼")+'</div>':"")+
+    '</div><div class="years">'+yrHTML+'</div><div class="note">'+t.n+'</div>'+kpHTML+'</div>';
+  }).join("");
+}
+render();
+</script>
+</body>
+</html>

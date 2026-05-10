@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>JC Science 2026 Predictions</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#0a0a0f;color:#e2e8f0;font-family:Georgia,serif;min-height:100vh;}
+#header{background:linear-gradient(135deg,#0f172a 0%,#162032 50%,#0f172a 100%);border-bottom:1px solid #334155;padding:1.8rem 1.2rem 1.4rem;text-align:center;}
+.eyebrow{font-size:.6rem;letter-spacing:.28em;color:#64748b;text-transform:uppercase;margin-bottom:.5rem;}
+h1{font-size:clamp(1.3rem,5vw,2rem);font-weight:bold;margin:0 0 .25rem;background:linear-gradient(90deg,#e2e8f0,#38bdf8,#e2e8f0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+#header p{color:#64748b;font-size:.75rem;}
+.stats{display:flex;justify-content:center;gap:2rem;margin-top:1.1rem;flex-wrap:wrap;}
+.stat-val{font-size:1.5rem;font-weight:bold;font-family:monospace;}
+.stat-lbl{font-size:.6rem;color:#64748b;letter-spacing:.05em;}
+.filters{display:flex;gap:.5rem;padding:1rem 1rem 0;justify-content:center;flex-wrap:wrap;}
+.filters button{padding:.38rem 1rem;border-radius:999px;border:1px solid #334155;background:transparent;color:#64748b;cursor:pointer;font-size:.7rem;letter-spacing:.08em;font-family:monospace;-webkit-tap-highlight-color:transparent;}
+.filters button.active{border-color:#38bdf8;background:#0c2233;color:#38bdf8;}
+#cards{padding:.9rem .9rem 3rem;display:flex;flex-direction:column;gap:.6rem;max-width:700px;margin:0 auto;}
+.card{border-radius:8px;padding:.85rem 1rem;border:1px solid;border-left-width:3px;}
+.card.HOT{background:#052414;border-color:#16a34a55;border-left-color:#16a34a;}
+.card.WARM{background:#1a1000;border-color:#d9770655;border-left-color:#d97706;}
+.card.COLD{background:#0c0c1e;border-color:#4338ca55;border-left-color:#4338ca;}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;}
+.badges{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;}
+.badge-pred{font-size:.57rem;padding:.12rem .45rem;border-radius:4px;font-family:monospace;letter-spacing:.1em;}
+.HOT .badge-pred{background:#16a34a33;color:#4ade80;}
+.WARM .badge-pred{background:#d9770633;color:#fbbf24;}
+.COLD .badge-pred{background:#4338ca33;color:#818cf8;}
+.badge-strand{font-size:.57rem;color:#475569;font-family:monospace;}
+.card-title{font-size:.92rem;font-weight:bold;margin-top:.28rem;color:#e2e8f0;}
+.arrow{font-size:.72rem;flex-shrink:0;margin-top:.25rem;}
+.HOT .arrow{color:#4ade80;}
+.WARM .arrow{color:#fbbf24;}
+.COLD .arrow{color:#818cf8;}
+.years{display:flex;gap:.32rem;margin-top:.48rem;flex-wrap:wrap;}
+.yr{font-size:.57rem;font-family:monospace;padding:.14rem .42rem;border-radius:4px;border:1px solid;}
+.yr.hit.HOT{background:#16a34a22;color:#4ade80;border-color:#16a34a55;}
+.yr.hit.WARM{background:#d9770622;color:#fbbf24;border-color:#d9770655;}
+.yr.hit.COLD{background:#4338ca22;color:#818cf8;border-color:#4338ca55;}
+.yr.miss{background:#1e293b;color:#475569;border-color:#334155;}
+.note{font-size:.7rem;color:#94a3b8;margin-top:.38rem;line-height:1.45;}
+.key-points{margin-top:.65rem;padding-top:.65rem;border-top:1px solid;}
+.HOT .key-points{border-color:#16a34a33;}
+.WARM .key-points{border-color:#d9770633;}
+.COLD .key-points{border-color:#4338ca33;}
+.kp-label{font-size:.56rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.38rem;}
+.HOT .kp-label{color:#4ade80;}
+.WARM .kp-label{color:#fbbf24;}
+.COLD .kp-label{color:#818cf8;}
+.kp-item{font-size:.74rem;color:#cbd5e1;padding:.18rem 0;display:flex;gap:.38rem;}
+.HOT .kp-item span:first-child{color:#4ade80;}
+.WARM .kp-item span:first-child{color:#fbbf24;}
+.COLD .kp-item span:first-child{color:#818cf8;}
+footer{text-align:center;padding:1rem;color:#334155;font-size:.57rem;letter-spacing:.05em;border-top:1px solid #1e293b;}
+</style>
+</head>
+<body>
+<div id="header">
+  <div class="eyebrow">Junior Certificate Science · Common Level · Pattern Analysis 2022–2025</div>
+  <h1>Science 2026 Predictions</h1>
+  <p>Based on 4 SEC papers · topics absent longest rank highest · tap a card for key points</p>
+  <div class="stats">
+    <div><div class="stat-val" style="color:#4ade80" id="cnt-hot">0</div><div class="stat-lbl">🔥 High</div></div>
+    <div><div class="stat-val" style="color:#fbbf24" id="cnt-warm">0</div><div class="stat-lbl">⚡ Medium</div></div>
+    <div><div class="stat-val" style="color:#818cf8" id="cnt-cold">0</div><div class="stat-lbl">❄️ Low</div></div>
+  </div>
+</div>
+<div class="filters">
+  <button class="active" onclick="setFilter('ALL',this)">SHOW ALL</button>
+  <button onclick="setFilter('HOT',this)">🔥 HIGH</button>
+  <button onclick="setFilter('WARM',this)">⚡ MEDIUM</button>
+  <button onclick="setFilter('COLD',this)">❄️ LOW</button>
+</div>
+<div id="cards"></div>
+<footer>SOURCE: SEC JC Science Papers 2022–2025 · dublinacademy.ie analysis · Pattern only — not official SEC guidance</footer>
+<script>
+var topics=[
+{t:"Speed, Velocity & Acceleration",s:"Physics",y:{2022:"Q7",2023:"Q7",2024:"Q4/Q11",2025:"Q4/Q9"},p:"HOT",n:"Appears in EVERY paper (2022–2025). The most reliable Section A physics topic. Guaranteed.",k:["DST triangle: Speed = Distance ÷ Time","Acceleration = (v – u) ÷ t","Velocity-time graphs: slope = acceleration, area = distance","D-T graph: slope = speed; flat = stationary; curve = acceleration"]},
+{t:"Evolution & Natural Selection",s:"Biology",y:{2022:"Q4",2023:"–",2024:"–",2025:"–"},p:"HOT",n:"Only appeared once in 2022. Three years without it — very overdue.",k:["Natural selection: survival of the fittest","Charles Darwin and the Galápagos","Variation within species","Adaptations to environment"]},
+{t:"Cells (Plant vs Animal)",s:"Biology",y:{2022:"Q12*",2023:"Q1",2024:"–",2025:"–"},p:"HOT",n:"Not tested as a standalone in 2024 or 2025. Likely to return.",k:["Plant cell: cell wall, chloroplast, vacuole","Animal cell: cell membrane, cytoplasm, nucleus","Microscope use and cell observation","Onion cells (plant) vs cheek cells (animal)"]},
+{t:"Ecology / Food Chains / Habitat",s:"Biology",y:{2022:"–",2023:"Q6",2024:"Q1/Q15",2025:"–"},p:"HOT",n:"Appeared in 2023 and 2024, skipped 2025. Very likely for 2026.",k:["Producers, primary/secondary consumers, decomposers","Quadrat surveys (% frequency calculation)","Pooter, net, pitfall trap — habitat equipment","Energy lost at each trophic level"]},
+{t:"Carbon Cycle / Water Cycle",s:"Earth & Space",y:{2022:"–",2023:"Q11*",2024:"Q17",2025:"–"},p:"HOT",n:"Carbon cycle as a main topic was Q11 in 2023 and Q17 in 2024. Not in 2025.",k:["Photosynthesis adds O2, removes CO2","Respiration adds CO2","Combustion releases CO2","Decomposition returns carbon to soil"]},
+{t:"Genetics / Inheritance",s:"Biology",y:{2022:"Q12*",2023:"–",2024:"Q6",2025:"–"},p:"HOT",n:"Not tested in 2023 or 2025. Pattern suggests 2026.",k:["Dominant vs recessive alleles (T vs t)","Genotype (TT, Tt, tt) vs phenotype (tall/dwarf)","Punnett squares and cross ratios","Sexual vs asexual reproduction"]},
+{t:"Chemical Reactions (general)",s:"Chemistry",y:{2022:"Q13*",2023:"Q3/Q12",2024:"Q12",2025:"Q10/Q12"},p:"HOT",n:"ALWAYS appears in some form. Perennial fixture — master this topic.",k:["Reactants → Products","Word equations and symbol equations","Exothermic vs endothermic (energy profile diagrams)","Rates of reaction: surface area, temperature, concentration"]},
+{t:"Electricity (circuits)",s:"Physics",y:{2022:"Q13*",2023:"Q5",2024:"Q5/Q9/Q11",2025:"Q5/Q11"},p:"HOT",n:"Appears every year. Will definitely feature in 2026 in some form.",k:["Series vs parallel circuits","Ohm's Law: V = I × R","Ammeter (current) vs voltmeter (voltage)","Power: P = V × I"]},
+{t:"Energy Sources (renewable/non-renewable)",s:"Earth & Space",y:{2022:"–",2023:"–",2024:"Q2",2025:"–"},p:"WARM",n:"Only appeared 2024. Could return — sustainability is a growing theme.",k:["Renewable: wind, solar, hydro, geothermal","Non-renewable: coal, oil, gas, nuclear","Ethical issues around fossil fuels","Sankey diagrams for energy efficiency"]},
+{t:"Human Reproduction",s:"Biology",y:{2022:"–",2023:"Q2",2024:"Q8",2025:"–"},p:"WARM",n:"Appeared 2023 and 2024, skipped 2025. Possible but competed by other bio topics.",k:["Female: ovary, fallopian tube, uterus, vagina","Male: testis, sperm duct, urethra","Fertilisation: egg + sperm → zygote","Contraception methods"]},
+{t:"Separating Mixtures",s:"Chemistry",y:{2022:"–",2023:"–",2024:"Q3",2025:"–"},p:"WARM",n:"Only appeared in 2024. Could return as a Section A chemistry question.",k:["Filtration (solid from liquid)","Evaporation/distillation (solute from solution)","Chromatography (separating dyes/inks)","Decanting and centrifugation"]},
+{t:"The Atom & Periodic Table",s:"Chemistry",y:{2022:"Q3",2023:"Q9/Q10",2024:"–",2025:"Q5*"},p:"WARM",n:"Appeared 2022 and 2023, lightly in 2025. Expect a fuller standalone question.",k:["Protons, neutrons, electrons (charges and positions)","Atomic number = number of protons","Bohr model — electron shells","Periodic table groups and periods"]},
+{t:"Nature of Science (variables, hypothesis, graphing)",s:"NoS",y:{2022:"–",2023:"Q12*",2024:"Q13",2025:"Q12*"},p:"WARM",n:"Integrated into questions most years. Usually embedded in Section B.",k:["Independent variable (what you change)","Dependent variable (what you measure)","Control variables (what you keep the same)","Line of best fit (not dot-to-dot!)"]},
+{t:"Earth, Sun & Moon / Eclipses / Seasons",s:"Earth & Space",y:{2022:"Q2/Q6/Q11",2023:"Q13",2024:"Q14",2025:"Q13*"},p:"WARM",n:"Appears every year in some form but 2025 had it heavily (Q13 solar/lunar eclipses). Lower priority.",k:["Solar eclipse: Moon between Earth and Sun (new Moon)","Lunar eclipse: Earth between Sun and Moon (full Moon)","Seasons caused by Earth's axial tilt","Phases of the Moon — 28-day cycle"]},
+{t:"Climate / Sustainability",s:"Earth & Space",y:{2022:"Q14*",2023:"–",2024:"Q10",2025:"Q1"},p:"COLD",n:"Just appeared as Q1 in 2025. Unlikely to be the opener again in 2026.",k:[]},
+{t:"States of Matter",s:"Chemistry",y:{2022:"–",2023:"Q4",2024:"Q16",2025:"Q2"},p:"COLD",n:"Appeared in 2025 Q2. Skip for now.",k:[]},
+{t:"Acids & Bases / Neutralisation",s:"Chemistry",y:{2022:"Q9",2023:"Q8",2024:"–",2025:"Q6"},p:"COLD",n:"Appeared in 2025. Low priority for 2026.",k:[]},
+{t:"Human Health / Circulatory System",s:"Biology",y:{2022:"Q10",2023:"Q15*",2024:"–",2025:"Q3"},p:"COLD",n:"Just appeared in 2025 (Q3 heart rate, Q12 digestive). Skip.",k:[]},
+{t:"Respiratory / Breathing System",s:"Biology",y:{2022:"–",2023:"Q15",2024:"–",2025:"Q8/Q14"},p:"COLD",n:"Heavy coverage in 2025 (Q8 labelling + Q14 respiration). Skip.",k:[]},
+{t:"Photosynthesis & Respiration",s:"Biology",y:{2022:"–",2023:"Q11*",2024:"Q13*",2025:"Q14"},p:"COLD",n:"Appeared as Q14 in 2025. Very unlikely to repeat in same form.",k:[]},
+{t:"Space / Origin of Universe",s:"Earth & Space",y:{2022:"Q8",2023:"Q13",2024:"Q7/Q14*",2025:"Q13"},p:"COLD",n:"Space/eclipses featured heavily in 2025 Q13. Lower priority.",k:[]},
+{t:"Biodiversity & Conservation",s:"Biology",y:{2022:"–",2023:"Q6*",2024:"–",2025:"Q7"},p:"COLD",n:"Just appeared in 2025.",k:[]},
+{t:"Forces (weight, friction, tension)",s:"Physics",y:{2022:"Q15*",2023:"–",2024:"Q11",2025:"Q4/Q9"},p:"COLD",n:"Forces appeared twice in 2025 (Q4 football + Q9 density). Skip as standalone topic.",k:[]}
+];
+var YEARS=[2022,2023,2024,2025];
+var LABELS={HOT:"🔥 HIGH",WARM:"⚡ MEDIUM",COLD:"❄️ LOW"};
+var currentFilter="ALL";
+var expanded={};
+function setFilter(f,btn){currentFilter=f;document.querySelectorAll(".filters button").forEach(function(b){b.classList.remove("active");});btn.classList.add("active");render();}
+function toggle(idx){expanded[idx]=!expanded[idx];render();}
+function render(){
+  var shown=topics.filter(function(t){return currentFilter==="ALL"||t.p===currentFilter;});
+  document.getElementById("cnt-hot").textContent=topics.filter(function(t){return t.p==="HOT";}).length;
+  document.getElementById("cnt-warm").textContent=topics.filter(function(t){return t.p==="WARM";}).length;
+  document.getElementById("cnt-cold").textContent=topics.filter(function(t){return t.p==="COLD";}).length;
+  var c=document.getElementById("cards");
+  c.innerHTML=shown.map(function(t){
+    var realIdx=topics.indexOf(t);
+    var hasK=t.k&&t.k.length>0;
+    var isOpen=!!expanded[realIdx];
+    var yrHTML=YEARS.map(function(y){var v=t.y[y];var hit=v&&v!=="–";return '<span class="yr '+(hit?"hit "+t.p:"miss")+'">'+ y+": "+(v||"–")+"</span>";}).join("");
+    var kpHTML="";
+    if(isOpen&&hasK){kpHTML='<div class="key-points"><div class="kp-label">Key Points</div>'+t.k.map(function(kp){return '<div class="kp-item"><span>›</span><span>'+kp+'</span></div>';}).join("")+'</div>';}
+    var clickAttr=hasK?'onclick="toggle('+realIdx+')" style="cursor:pointer"':'';
+    return '<div class="card '+t.p+'" '+clickAttr+'><div class="card-top"><div style="flex:1"><div class="badges"><span class="badge-pred">'+LABELS[t.p]+'</span><span class="badge-strand">'+t.s+'</span></div><div class="card-title">'+t.t+'</div></div>'+(hasK?'<div class="arrow">'+(isOpen?"▲":"▼")+'</div>':"")+
+    '</div><div class="years">'+yrHTML+'</div><div class="note">'+t.n+'</div>'+kpHTML+'</div>';
+  }).join("");
+}
+render();
+</script>
+</body>
+</html>
