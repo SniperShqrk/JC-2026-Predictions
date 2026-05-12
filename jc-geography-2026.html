@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>JC Geography 2026 Predictions</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#0a0a0f;color:#e2e8f0;font-family:Georgia,serif;min-height:100vh;}
+#header{background:linear-gradient(135deg,#0f172a 0%,#0f2018 50%,#0f172a 100%);border-bottom:1px solid #334155;padding:1.8rem 1.2rem 1.4rem;text-align:center;}
+.eyebrow{font-size:.6rem;letter-spacing:.28em;color:#64748b;text-transform:uppercase;margin-bottom:.5rem;}
+h1{font-size:clamp(1.3rem,5vw,2rem);font-weight:bold;margin:0 0 .25rem;background:linear-gradient(90deg,#e2e8f0,#34d399,#e2e8f0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+#header p{color:#64748b;font-size:.75rem;}
+.stats{display:flex;justify-content:center;gap:2rem;margin-top:1.1rem;flex-wrap:wrap;}
+.stat-val{font-size:1.5rem;font-weight:bold;font-family:monospace;}
+.stat-lbl{font-size:.6rem;color:#64748b;letter-spacing:.05em;}
+.filters{display:flex;gap:.5rem;padding:1rem 1rem 0;justify-content:center;flex-wrap:wrap;}
+.filters button{padding:.38rem 1rem;border-radius:999px;border:1px solid #334155;background:transparent;color:#64748b;cursor:pointer;font-size:.7rem;letter-spacing:.08em;font-family:monospace;-webkit-tap-highlight-color:transparent;}
+.filters button.active{border-color:#34d399;background:#0a2018;color:#34d399;}
+#cards{padding:.9rem .9rem 3rem;display:flex;flex-direction:column;gap:.6rem;max-width:700px;margin:0 auto;}
+.card{border-radius:8px;padding:.85rem 1rem;border:1px solid;border-left-width:3px;}
+.card.HOT{background:#052414;border-color:#16a34a55;border-left-color:#16a34a;}
+.card.WARM{background:#1a1000;border-color:#d9770655;border-left-color:#d97706;}
+.card.COLD{background:#0c0c1e;border-color:#4338ca55;border-left-color:#4338ca;}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;}
+.badges{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;}
+.badge-pred{font-size:.57rem;padding:.12rem .45rem;border-radius:4px;font-family:monospace;letter-spacing:.1em;}
+.HOT .badge-pred{background:#16a34a33;color:#4ade80;}
+.WARM .badge-pred{background:#d9770633;color:#fbbf24;}
+.COLD .badge-pred{background:#4338ca33;color:#818cf8;}
+.badge-strand{font-size:.57rem;color:#475569;font-family:monospace;}
+.card-title{font-size:.92rem;font-weight:bold;margin-top:.28rem;color:#e2e8f0;}
+.arrow{font-size:.72rem;flex-shrink:0;margin-top:.25rem;}
+.HOT .arrow{color:#4ade80;}
+.WARM .arrow{color:#fbbf24;}
+.COLD .arrow{color:#818cf8;}
+.years{display:flex;gap:.32rem;margin-top:.48rem;flex-wrap:wrap;}
+.yr{font-size:.57rem;font-family:monospace;padding:.14rem .42rem;border-radius:4px;border:1px solid;}
+.yr.hit.HOT{background:#16a34a22;color:#4ade80;border-color:#16a34a55;}
+.yr.hit.WARM{background:#d9770622;color:#fbbf24;border-color:#d9770655;}
+.yr.hit.COLD{background:#4338ca22;color:#818cf8;border-color:#4338ca55;}
+.yr.miss{background:#1e293b;color:#475569;border-color:#334155;}
+.note{font-size:.7rem;color:#94a3b8;margin-top:.38rem;line-height:1.45;}
+.key-points{margin-top:.65rem;padding-top:.65rem;border-top:1px solid;}
+.HOT .key-points{border-color:#16a34a33;}
+.WARM .key-points{border-color:#d9770633;}
+.COLD .key-points{border-color:#4338ca33;}
+.kp-label{font-size:.56rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.38rem;}
+.HOT .kp-label{color:#4ade80;}
+.WARM .kp-label{color:#fbbf24;}
+.COLD .kp-label{color:#818cf8;}
+.kp-item{font-size:.74rem;color:#cbd5e1;padding:.18rem 0;display:flex;gap:.38rem;}
+.HOT .kp-item span:first-child{color:#4ade80;}
+.WARM .kp-item span:first-child{color:#fbbf24;}
+.COLD .kp-item span:first-child{color:#818cf8;}
+footer{text-align:center;padding:1rem;color:#334155;font-size:.57rem;letter-spacing:.05em;border-top:1px solid #1e293b;}
+</style>
+</head>
+<body>
+<div id="header">
+  <div class="eyebrow">Junior Certificate Geography · Common Level · Pattern Analysis 2022–2025</div>
+  <h1>Geography 2026 Predictions</h1>
+  <p>9 questions · all compulsory · map work features in almost every question · tap a card for key points</p>
+  <div class="stats">
+    <div><div class="stat-val" style="color:#4ade80" id="cnt-hot">0</div><div class="stat-lbl">🔥 High</div></div>
+    <div><div class="stat-val" style="color:#fbbf24" id="cnt-warm">0</div><div class="stat-lbl">⚡ Medium</div></div>
+    <div><div class="stat-val" style="color:#818cf8" id="cnt-cold">0</div><div class="stat-lbl">❄️ Low</div></div>
+  </div>
+</div>
+<div class="filters">
+  <button class="active" onclick="setFilter('ALL',this)">SHOW ALL</button>
+  <button onclick="setFilter('HOT',this)">🔥 HIGH</button>
+  <button onclick="setFilter('WARM',this)">⚡ MEDIUM</button>
+  <button onclick="setFilter('COLD',this)">❄️ LOW</button>
+</div>
+<div id="cards"></div>
+<footer>SOURCE: SEC JC Geography Papers 2022–2025 · Irish Times exam reviews · Dublin Academy analysis · Pattern only — not official SEC guidance</footer>
+<script>
+var topics=[
+{t:"OS Map Skills (sketch maps, grid refs, scale)",s:"Skills",y:{2022:"Q5",2023:"Q5",2024:"Q4",2025:"Q4"},p:"HOT",n:"Appears EVERY year without exception. A full OS map question is certain in 2026. Practise 6-figure grid references, sketch maps, and scale calculations.",k:["6-figure grid reference: read eastings (→) then northings (↑) — 'along the hall and up the stairs'","Scale: 1:50,000 means 1cm = 0.5km (2cm = 1km)","Sketch map: draw outline, label features, add north arrow and key","Map directions: N, NE, E, SE, S, SW, W, NW — use 8-point compass","Evidence of functions: residential (housing), commercial (shops), industrial (factory), recreational (park)","Linear settlement: houses along a road; nucleated: clustered around a point; dispersed: scattered"]},
+{t:"Rock Types & the Rock Cycle",s:"Physical",y:{2022:"–",2023:"–",2024:"–",2025:"–"},p:"HOT",n:"Completely absent from 2025 — teachers specifically noted its absence as a surprise. Four years without a proper standalone rock question. Very overdue.",k:["Igneous: formed from magma/lava (granite = intrusive, basalt = extrusive)","Sedimentary: formed from compressed sediment layers (limestone, sandstone, shale)","Metamorphic: formed when rock is changed by heat and pressure (marble from limestone, slate from shale)","Rock cycle: igneous → weathered → sedimentary → metamorphosed → melted → igneous again","Karst (limestone) landscapes: caves, stalactites, stalagmites, clints and grykes","Ireland example: Burren (limestone karst), Wicklow Mountains (granite)"]},
+{t:"Development & Life Expectancy",s:"Human",y:{2022:"Q9",2023:"Q9",2024:"Q9",2025:"Q9"},p:"HOT",n:"Q9 has been development-themed in every paper. Life expectancy, birth/death rates, and differences between developed and developing countries. Certain for 2026.",k:["Developed country: high life expectancy (80+), low birth rate, aging population","Developing country: low life expectancy, high birth rate, young population","Reasons for low life expectancy in LDCs: poor healthcare, malnutrition, lack of clean water, disease","Demographic Transition Model: Stage 1 (high B/high D) → Stage 5 (low B/low D)","Population pyramid: wide base = young population (developing); narrow base = aging (developed)","Factors affecting birth rate: education, religion, cost of living, access to contraception"]},
+{t:"Settlement Patterns & Urbanisation",s:"Human",y:{2022:"Q7",2023:"Q7",2024:"Q7/Q8",2025:"Q7"},p:"HOT",n:"Settlement has appeared in Q7 or Q8 every single year. Rural settlement patterns, factors influencing town location, and urban functions always feature.",k:["Factors for town location: water supply, defence (hilltop), bridging point on river, coastal harbour","Rural settlement: linear (along road), nucleated (around crossroads/church), dispersed (scattered farms)","Urban functions: residential, commercial, industrial, recreational, religious","Burgess model: CBD → transition zone → inner suburbs → outer suburbs","Reasons for suburbanisation: cheaper land, car ownership, better roads","Globalisation impact on settlement: commuter towns, MNCs attracting workers to cities"]},
+{t:"Climate Data & Weather Charts",s:"Physical",y:{2022:"Q5",2023:"Q5",2024:"Q5",2025:"Q5"},p:"HOT",n:"Q5 is always climate/weather data. Reading tables, calculating temperature range and average rainfall, interpreting synoptic weather charts. Certain.",k:["Temperature range = highest month − lowest month","Average rainfall = sum of months ÷ 12","Synoptic chart: isobars (pressure lines), fronts (warm=rounded, cold=triangular, occluded=both)","Anticyclone = high pressure = dry, sunny, calm weather","Depression = low pressure = wet, windy, cloudy weather","Ireland's climate: Temperate Oceanic (mild, wet, changeable — due to North Atlantic Current)"]},
+{t:"Plate Tectonics & Earthquakes",s:"Physical",y:{2022:"Q1",2023:"Q1",2024:"Q1",2025:"Q1"},p:"HOT",n:"Q1 has been plate tectonics (earthquakes or volcanoes) every year 2022–2025. Certain to return in 2026 — know the theory cold.",k:["Plates: Eurasian, North American, African, Pacific, Indo-Australian, Nazca","Colliding plate boundary: fold mountains, volcanoes (destructive)","Separating boundary: mid-ocean ridges, rift valleys (constructive)","Sliding boundary: earthquakes (e.g. San Andreas fault — conservative)","Earthquake: focus = origin underground; epicentre = point on surface above focus","Seismograph measures earthquake; Richter Scale measures magnitude","Ireland is on the Eurasian Plate"]},
+{t:"Industry Location & Economic Activity",s:"Human",y:{2022:"Q6",2023:"Q6",2024:"–",2025:"–"},p:"HOT",n:"Industry location (peat factory, wind farm site, factory) was in Q6 for 2022 and 2023 but absent in 2024 and 2025. Very overdue.",k:["Factors influencing factory location: flat land, transport links, labour supply, raw materials, markets","Primary industry: farming, fishing, forestry, mining","Secondary industry: manufacturing (e.g. food processing, pharma)","Tertiary industry: services (e.g. banking, education, retail)","Peat production: located near boglands (midlands of Ireland), now declining — sustainability angle","MNCs in Ireland: attracted by low corporation tax (12.5%), English language, EU access"]},
+{t:"Mass Movement (Landslides, Slopes)",s:"Physical",y:{2022:"–",2023:"–",2024:"Q3",2025:"Q1*"},p:"WARM",n:"Mass movement appeared in 2024 as Q3 (landslides). In 2025 it was touched on via earthquakes causing mass movement. Possible standalone again.",k:["Soil creep: slow downhill movement — shown by curved fenceposts and leaning trees","Landslide: sudden movement of rock/soil (triggered by heavy rain, earthquakes, overgrazing)","Mudflow: saturated soil flows downhill rapidly","Factors increasing risk: heavy rainfall, steep slope, deforestation, overgrazing, construction","Human activity causing mass movement: quarrying, road building, deforestation","Controlling mass movement: tree planting, drainage systems, retaining walls"]},
+{t:"Rivers (Erosion, Landforms, Management)",s:"Physical",y:{2022:"Q6*",2023:"Q6*",2024:"Q6",2025:"Q6*"},p:"WARM",n:"Rivers appeared in 2024 Q6 and were examined via 'human interaction' in 2025. However glaciation took the spotlight in 2025. Rivers standalone likely in 2026.",k:["River erosion: hydraulic action, abrasion, corrasion, attrition, corrosion (solution)","Upper course: V-shaped valley, interlocking spurs, waterfalls","Middle course: meanders, ox-bow lakes","Lower course: floodplain, levees, delta","River management: embankments, channelisation, reservoirs, dams","Human interaction: flooding (Leinster flooding example), irrigation, hydroelectric power"]},
+{t:"Renewable Energy & Sustainability",s:"Human",y:{2022:"Q6",2023:"–",2024:"Q4*",2025:"–"},p:"WARM",n:"Wind farm appeared in 2022 Q6. Sustainability/renewable energy briefly touched in 2024. Not a main topic in 2023 or 2025. Likely to return.",k:["Renewable: wind, solar, hydroelectric, geothermal, tidal","Wind energy in Ireland: offshore wind farms planned (Kinsale, off Dublin coast)","Arguments for wind farm: clean energy, reduces emissions, local jobs","Arguments against: visual impact, noise, affects wildlife (birds), high initial cost","Ireland's 2030 target: 80% of electricity from renewables","Hydroelectric: Ardnacrusha on River Shannon — Ireland's largest"]},
+{t:"Migration & Population",s:"Human",y:{2022:"Q9*",2023:"Q7",2024:"Q2",2025:"Q7*"},p:"WARM",n:"Migration features in most years but in different questions. Life in developed vs developing country is a recurring angle.",k:["Push factors: poverty, war, famine, lack of jobs, natural disasters","Pull factors: better wages, safety, education, healthcare","Internal migration: rural to urban (urbanisation)","International migration: emigration (leaving) and immigration (arriving)","Ireland: historically emigration (Famine); now immigration (MNCs, EU workers)","Refugee: forced to flee due to persecution or war; Migrant: chooses to move for better life"]},
+{t:"Aerial Photography Interpretation",s:"Skills",y:{2022:"Q8",2023:"Q8",2024:"Q8",2025:"Q8"},p:"WARM",n:"Appeared in Q8 every year but the questions within it vary. Always involves identifying land use and functions from an aerial photo.",k:["Foreground = near bottom of photo; middleground = centre; background = top","Identify functions: residential (housing estates), commercial (car parks, shops), industrial (large flat-roofed buildings)","North: usually indicated by shadow direction or grid lines","Urban CBD: densely built, street patterns, large buildings near centre","Compare aerial photo to OS map: match features using grid references","Evidence of tourism: caravan parks, golf courses, visitor centres"]},
+{t:"Glaciation (Erosion & Deposition)",s:"Physical",y:{2022:"Q6*",2023:"–",2024:"Q6*",2025:"Q6"},p:"COLD",n:"Glaciation featured in 2025 as a main physical geography topic. Skip for 2026.",k:[]},
+{t:"Water Cycle / Hydrological Cycle",s:"Physical",y:{2022:"–",2023:"–",2024:"Q4*",2025:"Q5*"},p:"COLD",n:"Water cycle appeared in 2025. Unlikely to repeat as a main question.",k:[]},
+{t:"Human Interaction with Rivers",s:"Physical",y:{2022:"–",2023:"–",2024:"Q6*",2025:"Q6"},p:"COLD",n:"River management and human interaction appeared in 2025. Skip the specific 'human interaction' angle.",k:[]},
+{t:"Volcanoes",s:"Physical",y:{2022:"Q1",2023:"Q1",2024:"Q1*",2025:"Q1"},p:"COLD",n:"Volcanoes always appear in Q1 alongside earthquakes. Will still appear but as part of the plate tectonics question, not standalone.",k:[]},
+{t:"Climate Change (Greenhouse Gases)",s:"Human",y:{2022:"Q6*",2023:"–",2024:"Q2",2025:"Q2*"},p:"COLD",n:"Climate change / greenhouse gas emissions appeared in 2024 Q2 and touched on in 2025. Covered under 2025 paper.",k:[]}
+];
+var YEARS=[2022,2023,2024,2025];
+var LABELS={HOT:"🔥 HIGH",WARM:"⚡ MEDIUM",COLD:"❄️ LOW"};
+var currentFilter="ALL";
+var expanded={};
+function setFilter(f,btn){currentFilter=f;document.querySelectorAll(".filters button").forEach(function(b){b.classList.remove("active");});btn.classList.add("active");render();}
+function toggle(idx){expanded[idx]=!expanded[idx];render();}
+function render(){
+  var shown=topics.filter(function(t){return currentFilter==="ALL"||t.p===currentFilter;});
+  document.getElementById("cnt-hot").textContent=topics.filter(function(t){return t.p==="HOT";}).length;
+  document.getElementById("cnt-warm").textContent=topics.filter(function(t){return t.p==="WARM";}).length;
+  document.getElementById("cnt-cold").textContent=topics.filter(function(t){return t.p==="COLD";}).length;
+  var c=document.getElementById("cards");
+  c.innerHTML=shown.map(function(t){
+    var realIdx=topics.indexOf(t);
+    var hasK=t.k&&t.k.length>0;
+    var isOpen=!!expanded[realIdx];
+    var yrHTML=YEARS.map(function(y){var v=t.y[y];var hit=v&&v!=="–";return '<span class="yr '+(hit?"hit "+t.p:"miss")+'">'+ y+": "+(v||"–")+"</span>";}).join("");
+    var kpHTML="";
+    if(isOpen&&hasK){kpHTML='<div class="key-points"><div class="kp-label">Key Points</div>'+t.k.map(function(kp){return '<div class="kp-item"><span>›</span><span>'+kp+'</span></div>';}).join("")+'</div>';}
+    var clickAttr=hasK?'onclick="toggle('+realIdx+')" style="cursor:pointer"':'';
+    return '<div class="card '+t.p+'" '+clickAttr+'><div class="card-top"><div style="flex:1"><div class="badges"><span class="badge-pred">'+LABELS[t.p]+'</span><span class="badge-strand">'+t.s+'</span></div><div class="card-title">'+t.t+'</div></div>'+(hasK?'<div class="arrow">'+(isOpen?"▲":"▼")+'</div>':"")+
+    '</div><div class="years">'+yrHTML+'</div><div class="note">'+t.n+'</div>'+kpHTML+'</div>';
+  }).join("");
+}
+render();
+</script>
+</body>
+</html>

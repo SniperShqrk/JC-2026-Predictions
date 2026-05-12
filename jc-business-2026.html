@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>JC Business 2026 Predictions</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#0a0a0f;color:#e2e8f0;font-family:Georgia,serif;min-height:100vh;}
+#header{background:linear-gradient(135deg,#0f172a 0%,#1a0f2e 50%,#0f172a 100%);border-bottom:1px solid #334155;padding:1.8rem 1.2rem 1.4rem;text-align:center;}
+.eyebrow{font-size:.6rem;letter-spacing:.28em;color:#64748b;text-transform:uppercase;margin-bottom:.5rem;}
+h1{font-size:clamp(1.3rem,5vw,2rem);font-weight:bold;margin:0 0 .25rem;background:linear-gradient(90deg,#e2e8f0,#e879f9,#e2e8f0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+#header p{color:#64748b;font-size:.75rem;}
+.stats{display:flex;justify-content:center;gap:2rem;margin-top:1.1rem;flex-wrap:wrap;}
+.stat-val{font-size:1.5rem;font-weight:bold;font-family:monospace;}
+.stat-lbl{font-size:.6rem;color:#64748b;letter-spacing:.05em;}
+.filters{display:flex;gap:.5rem;padding:1rem 1rem 0;justify-content:center;flex-wrap:wrap;}
+.filters button{padding:.38rem 1rem;border-radius:999px;border:1px solid #334155;background:transparent;color:#64748b;cursor:pointer;font-size:.7rem;letter-spacing:.08em;font-family:monospace;-webkit-tap-highlight-color:transparent;}
+.filters button.active{border-color:#e879f9;background:#1a0f2e;color:#e879f9;}
+#cards{padding:.9rem .9rem 3rem;display:flex;flex-direction:column;gap:.6rem;max-width:700px;margin:0 auto;}
+.card{border-radius:8px;padding:.85rem 1rem;border:1px solid;border-left-width:3px;}
+.card.HOT{background:#052414;border-color:#16a34a55;border-left-color:#16a34a;}
+.card.WARM{background:#1a1000;border-color:#d9770655;border-left-color:#d97706;}
+.card.COLD{background:#0c0c1e;border-color:#4338ca55;border-left-color:#4338ca;}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;}
+.badges{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;}
+.badge-pred{font-size:.57rem;padding:.12rem .45rem;border-radius:4px;font-family:monospace;letter-spacing:.1em;}
+.HOT .badge-pred{background:#16a34a33;color:#4ade80;}
+.WARM .badge-pred{background:#d9770633;color:#fbbf24;}
+.COLD .badge-pred{background:#4338ca33;color:#818cf8;}
+.badge-strand{font-size:.57rem;color:#475569;font-family:monospace;}
+.card-title{font-size:.92rem;font-weight:bold;margin-top:.28rem;color:#e2e8f0;}
+.arrow{font-size:.72rem;flex-shrink:0;margin-top:.25rem;}
+.HOT .arrow{color:#4ade80;}
+.WARM .arrow{color:#fbbf24;}
+.COLD .arrow{color:#818cf8;}
+.years{display:flex;gap:.32rem;margin-top:.48rem;flex-wrap:wrap;}
+.yr{font-size:.57rem;font-family:monospace;padding:.14rem .42rem;border-radius:4px;border:1px solid;}
+.yr.hit.HOT{background:#16a34a22;color:#4ade80;border-color:#16a34a55;}
+.yr.hit.WARM{background:#d9770622;color:#fbbf24;border-color:#d9770655;}
+.yr.hit.COLD{background:#4338ca22;color:#818cf8;border-color:#4338ca55;}
+.yr.miss{background:#1e293b;color:#475569;border-color:#334155;}
+.note{font-size:.7rem;color:#94a3b8;margin-top:.38rem;line-height:1.45;}
+.key-points{margin-top:.65rem;padding-top:.65rem;border-top:1px solid;}
+.HOT .key-points{border-color:#16a34a33;}
+.WARM .key-points{border-color:#d9770633;}
+.COLD .key-points{border-color:#4338ca33;}
+.kp-label{font-size:.56rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.38rem;}
+.HOT .kp-label{color:#4ade80;}
+.WARM .kp-label{color:#fbbf24;}
+.COLD .kp-label{color:#818cf8;}
+.kp-item{font-size:.74rem;color:#cbd5e1;padding:.18rem 0;display:flex;gap:.38rem;}
+.HOT .kp-item span:first-child{color:#4ade80;}
+.WARM .kp-item span:first-child{color:#fbbf24;}
+.COLD .kp-item span:first-child{color:#818cf8;}
+footer{text-align:center;padding:1rem;color:#334155;font-size:.57rem;letter-spacing:.05em;border-top:1px solid #1e293b;}
+</style>
+</head>
+<body>
+<div id="header">
+  <div class="eyebrow">Junior Certificate Business Studies · Common Level · Pattern Analysis 2022–2025</div>
+  <h1>Business 2026 Predictions</h1>
+  <p>Section A (15 short Qs) · Section B (3 long Qs: Q16, Q17, Q18) · tap cards for key points</p>
+  <div class="stats">
+    <div><div class="stat-val" style="color:#4ade80" id="cnt-hot">0</div><div class="stat-lbl">🔥 High</div></div>
+    <div><div class="stat-val" style="color:#fbbf24" id="cnt-warm">0</div><div class="stat-lbl">⚡ Medium</div></div>
+    <div><div class="stat-val" style="color:#818cf8" id="cnt-cold">0</div><div class="stat-lbl">❄️ Low</div></div>
+  </div>
+</div>
+<div class="filters">
+  <button class="active" onclick="setFilter('ALL',this)">SHOW ALL</button>
+  <button onclick="setFilter('HOT',this)">🔥 HIGH</button>
+  <button onclick="setFilter('WARM',this)">⚡ MEDIUM</button>
+  <button onclick="setFilter('COLD',this)">❄️ LOW</button>
+</div>
+<div id="cards"></div>
+<footer>SOURCE: SEC JC Business Studies Papers & Marking Schemes 2022–2025 · simplestudy.io · Pattern only — not official SEC guidance</footer>
+<script>
+var topics=[
+{t:"Household Budget (fixed, irregular, discretionary)",s:"Sec B Q16",y:{2022:"Q13/Q16",2023:"Q1/Q16",2024:"Q18",2025:"Q16"},p:"HOT",n:"Appeared in EVERY paper in Section B. Almost certain for 2026. Know how to calculate net cash and closing cash.",k:["Fixed expenditure: rent, mortgage, insurance — stays the same every month","Irregular expenditure: groceries, electricity, phone bill — varies","Discretionary expenditure: entertainment, holidays, takeaways — wants not needs","Net cash = Total Income (A) minus Total Expenditure (B)","Closing cash = Opening cash + Net cash","Surplus = income > expenditure; Deficit = expenditure > income"]},
+{t:"PAYE / Gross Pay / Net Pay Calculation",s:"Sec A & B",y:{2022:"Q18b",2023:"Q16b",2024:"Q12",2025:"Q13"},p:"HOT",n:"Appeared EVERY year without exception — either as a Section A short calc or a full wage slip in Section B.",k:["Gross Pay = Basic Pay + Overtime Pay","Overtime: 'time and a half' = hourly rate × 1.5; 'double time' = hourly rate × 2","PAYE = Gross Pay × tax rate, then subtract tax credits","Net Pay = Gross Pay - (PAYE + PRSI + USC)","Tax credit reduces the amount of PAYE you pay (e.g. €295 credit means you pay €295 less tax)"]},
+{t:"Insurance (premiums, principles, types)",s:"Sec A & B",y:{2022:"Q18",2023:"Q10",2024:"Q3",2025:"Q11"},p:"HOT",n:"Appeared EVERY year — sometimes a Section A calculation, sometimes full Section B question. Always there.",k:["Insurance premium = the annual cost/fee you pay for insurance","Principles of insurance: Utmost Good Faith (tell all facts), Indemnity (no profit from claim), Contribution (split between insurers)","Policy excess = amount you pay before insurer covers the rest","Calculation: Premium = (insured value ÷ 1,000) × rate per €1,000","Discount for burglar alarm = premium × discount % saved","Types: motor, home/buildings, health, travel, pet, life"]},
+{t:"Invoice / Credit Note Calculation (trade discount + VAT)",s:"Sec A",y:{2022:"Q3",2023:"Q3",2024:"Q17*",2025:"Q5"},p:"HOT",n:"Invoice calculation (trade discount then VAT) appeared every single year. Always 3 blank spaces to fill in.",k:["Step 1: Total (excluding VAT) — the list price","Step 2: Trade discount = Total × discount % (e.g. 10%)","Step 3: Subtotal = Total - Trade discount","Step 4: VAT = Subtotal × VAT rate (usually 23%)","Step 5: Total (including VAT) = Subtotal + VAT","Memorise the layout: Total → Discount → Subtotal → VAT → Grand Total"]},
+{t:"Social / Cultural Enterprise",s:"Sec A",y:{2022:"Q5",2023:"Q8",2024:"Q10",2025:"Q15"},p:"HOT",n:"Appeared in EVERY Section A paper. Always asks for roles in society or a definition + challenge.",k:["Social enterprise: a business that prioritises social/community goals over profit","Cultural enterprise: promotes arts, culture, heritage — e.g. Electric Picnic, Galway Arts Festival","Roles: provide employment, support community, promote culture, attract tourism","Challenge: relies on grants/funding which can be unpredictable; hard to compete with private firms","Example: Meals on Wheels, FoodCloud, Credit Union, local GAA club"]},
+{t:"Supply & Demand Diagram (equilibrium)",s:"Sec B Q16",y:{2022:"Q16c",2023:"Q18b",2024:"Q16c",2025:"Q12*"},p:"HOT",n:"Full diagram with labelled axes appeared 2022, 2023, 2024. 2025 only had factors affecting demand. Full diagram very likely to return.",k:["Demand curve slopes downward (higher price → lower demand)","Supply curve slopes upward (higher price → more supplied)","Equilibrium = where D and S curves cross (market clearing price)","At equilibrium: Quantity Demanded = Quantity Supplied","Label axes: Price on y-axis, Quantity on x-axis; include title; label D and S curves","Substitute good: replaces another (Xbox is a substitute for PS5)","Complementary good: used together (controller complements PS5)"]},
+{t:"EU Membership / Eurozone",s:"Sec A",y:{2022:"Q4",2023:"Q14",2024:"Q7",2025:"–"},p:"HOT",n:"Appeared in 2022, 2023, AND 2024 but was completely absent in 2025. Very likely to return.",k:["Single European Market (SEM): free movement of goods, services, capital, labour","Eurozone: countries using the euro — no exchange rate risk when trading within eurozone","Economic benefit: access to large market, FDI attracted, no customs barriers","Social benefit: Irish citizens can live/work/study in any EU country, European Health Insurance Card","Common Agricultural Policy (CAP): subsidies for Irish farmers"]},
+{t:"Opportunity Cost & Financial Cost",s:"Sec A",y:{2022:"Q16b",2023:"Q16a",2024:"Q14",2025:"–"},p:"HOT",n:"Financial cost vs opportunity cost appeared in 2022, 2023, and 2024. Absent in 2025. Due to return.",k:["Financial cost: the actual money spent on the chosen option","Opportunity cost: the value of the NEXT BEST alternative you gave up","Example: bought a PS5 for €500 → financial cost = €500; opportunity cost = what else €500 could have bought","Key phrase: opportunity cost is the FOREGONE ALTERNATIVE","Scarcity of resources forces choices between alternatives"]},
+{t:"Industrial Relations & Industrial Action",s:"Sec B Q16",y:{2022:"Q16a",2023:"–",2024:"–",2025:"–"},p:"HOT",n:"Full Section B question in 2022 (Lohan Ltd). Not in 2023, 2024, or 2025. Three years without it — very overdue.",k:["Industrial relations: the relationship between employer and employees in the workplace","Trade union: organisation that represents workers (e.g. SIPTU, ASTI, TUI)","Shop steward: elected employee representative who deals with management","Labour Court: investigates industrial disputes and recommends solutions (arbitration)","Types of industrial action: official strike, go-slow, work-to-rule, overtime ban, token stoppage","WRC (Workplace Relations Commission): first stage of dispute resolution before Labour Court"]},
+{t:"Income Statement (Gross Profit, Net Profit)",s:"Sec B Q17",y:{2022:"Q17",2023:"Q17",2024:"–",2025:"Q14*"},p:"HOT",n:"Full income statement was in Section B Q17 in 2022 and 2023. 2024/2025 had Cash Books instead. Full accounts question likely to alternate back.",k:["Sales - Cost of Sales = Gross Profit","Cost of Sales = Opening Stock + Purchases + Carriage Inwards - Closing Stock","Gross Profit - Expenses = Net Profit","Expenses include: wages, rent, light & heat, depreciation, advertising","Depreciation: Buildings 2%, Equipment 10-20% (reduces Net Book Value)","Net Profit - Dividends + Opening P&L Balance = Closing P&L Balance"]},
+{t:"Statement of Financial Position (Balance Sheet)",s:"Sec B Q17",y:{2022:"Q17",2023:"Q17",2024:"Q6*",2025:"–"},p:"HOT",n:"Full SFP in Q17 in 2022 and 2023. Not since. Very likely to return as the main Q17 accounts question.",k:["Fixed Assets: Buildings, Equipment (at Cost minus Depreciation = Net Book Value)","Current Assets: Cash, Debtors, Closing Stock","Current Liabilities: Creditors, Bank Overdraft","Working Capital = Current Assets - Current Liabilities","Total Net Assets = Fixed Assets + Working Capital","Financed by: Share Capital + P&L Balance (+ Long-term Loans if any)","Capital Employed must equal Total Net Assets"]},
+{t:"Market Research (primary vs secondary / field vs desk)",s:"Sec A & B",y:{2022:"Q18a",2023:"Q2",2024:"Q16b",2025:"–"},p:"WARM",n:"Appeared in 2022, 2023, 2024. Not explicitly in 2025. Likely to feature in some form.",k:["Primary (field) research: gathering new information yourself — survey, questionnaire, focus group, interview, observation","Secondary (desk) research: using existing information — internet, reports, CSO statistics, company accounts","Advantages of primary: up-to-date, specific to your needs","Advantages of secondary: cheaper, faster to gather","Market research helps identify target market, competitors, pricing, and consumer trends"]},
+{t:"International Trade (exports, imports, MNCs)",s:"Sec A & B",y:{2022:"Q17c",2023:"Q12",2024:"–",2025:"Q18b"},p:"WARM",n:"International trade appeared in 2022, 2023, and 2025. Visible/invisible imports/exports always a common format.",k:["Visible export: physical goods sold abroad (e.g. Irish beef sold in UK)","Visible import: physical goods bought from abroad (e.g. German cars in Ireland)","Invisible export: services sold abroad (e.g. tourists visiting Ireland)","Invisible import: services bought from abroad (e.g. Irish people holidaying in Spain)","Reasons Ireland trades: small domestic market, raw materials not available at home, generate income, economies of scale","MNCs in Ireland: low 12.5% corporation tax, English language, skilled workforce, EU access"]},
+{t:"Taxation (direct, indirect, PAYE, PRSI, USC, DIRT)",s:"Sec A",y:{2022:"Q11",2023:"–",2024:"Q2",2025:"Q2"},p:"WARM",n:"Carbon/sugar tax appeared in 2024 and 2025. Direct vs indirect tax is a recurring format.",k:["Direct tax: paid directly to government from income — PAYE, PRSI, USC, Corporation Tax","Indirect tax: tax on spending, included in price — VAT, carbon tax, sugar tax, excise duty","PAYE = Pay As You Earn (income tax)","PRSI = Pay Related Social Insurance (funds social welfare)","USC = Universal Social Charge (additional income tax)","DIRT = Deposit Interest Retention Tax (tax on savings interest, e.g. 33%)"]},
+{t:"Marketing Mix (4Ps: Product, Price, Place, Promotion)",s:"Sec A & B",y:{2022:"–",2023:"Q9",2024:"Q16b",2025:"Q18a*"},p:"WARM",n:"Marketing mix appeared in 2023 as a matching Q. Promotion was asked in 2025. Full 4Ps question could return.",k:["Product: the good or service being sold — brand, quality, packaging, USP","Price: what the consumer pays — cost-plus, competition-based, psychological pricing","Place: how the product reaches the customer — online, retail, distribution channel","Promotion: communicating the product to the market — advertising, sales promotion, PR, personal selling","Sales promotion examples: BOGOF, discount, free sample, loyalty card, coupon"]},
+{t:"Savings & Financial Institutions",s:"Sec A & B",y:{2022:"Q18c",2023:"–",2024:"–",2025:"Q16a"},p:"WARM",n:"Savings and institutions appeared in 2022 and 2025. Could return in a different format.",k:["Financial institutions: Commercial bank, Credit Union, An Post, Building Society","Reasons to save: emergencies, planned expenditure, earn interest, retirement","DIRT = 33% tax on interest earned from savings at commercial banks","An Post: no DIRT on savings — State guaranteed","Credit Union: community-based, member-owned, can earn dividends","Interest calculation: Principal × rate × time"]},
+{t:"National Budget (surplus, deficit, capital vs current expenditure)",s:"Sec B Q18",y:{2022:"–",2023:"Q18c",2024:"–",2025:"–"},p:"WARM",n:"Full national budget question appeared only in 2023. Could return as Q18.",k:["Budget surplus: government income > government expenditure","Budget deficit: government expenditure > government income","Capital expenditure: long-term spending on infrastructure — building schools, roads, hospitals","Current expenditure: day-to-day spending — paying wages, buying supplies","Government income sources: taxation (PAYE, VAT, corporation tax), borrowing, EU funding","Main spending areas: health, social protection, education, transport"]},
+{t:"Analysed Cash Book",s:"Sec B Q17",y:{2022:"–",2023:"–",2024:"Q17",2025:"Q17"},p:"COLD",n:"Appeared in BOTH 2024 and 2025 as the main Q17 accounts question. Might switch back to income statement/SFP in 2026.",k:[]},
+{t:"Deposit and Return Scheme / Sustainability",s:"Sec B Q18",y:{2022:"–",2023:"–",2024:"–",2025:"Q18c"},p:"COLD",n:"Just appeared in 2025. Skip.",k:[]},
+{t:"MNC Relocation / Global Companies",s:"Sec B",y:{2022:"–",2023:"–",2024:"Q16",2025:"Q18b"},p:"COLD",n:"Global company (Kellogg's) was 2024 Q16; MNC relocation was 2025 Q18b. Recently tested, skip.",k:[]},
+{t:"Impulse Buying",s:"Sec A",y:{2022:"Q16b",2023:"–",2024:"–",2025:"Q10"},p:"COLD",n:"Appeared 2022 and 2025. Just tested in 2025 — less likely in 2026.",k:[]},
+{t:"ECB Interest Rates Impact",s:"Sec B",y:{2022:"Q7",2023:"–",2024:"–",2025:"Q16c"},p:"COLD",n:"Interest rates appeared in basic form 2022 and more specifically in 2025. Recently tested.",k:[]},
+{t:"Inflation (CPI, causes, effects)",s:"Sec B Q18",y:{2022:"–",2023:"Q18a",2024:"–",2025:"Q18c"},p:"COLD",n:"Inflation appeared in 2023 and 2025. Less likely as the main Q18 focus in 2026.",k:[]}
+];
+var YEARS=[2022,2023,2024,2025];
+var LABELS={HOT:"🔥 HIGH",WARM:"⚡ MEDIUM",COLD:"❄️ LOW"};
+var currentFilter="ALL";
+var expanded={};
+function setFilter(f,btn){currentFilter=f;document.querySelectorAll(".filters button").forEach(function(b){b.classList.remove("active");});btn.classList.add("active");render();}
+function toggle(idx){expanded[idx]=!expanded[idx];render();}
+function render(){
+  var shown=topics.filter(function(t){return currentFilter==="ALL"||t.p===currentFilter;});
+  document.getElementById("cnt-hot").textContent=topics.filter(function(t){return t.p==="HOT";}).length;
+  document.getElementById("cnt-warm").textContent=topics.filter(function(t){return t.p==="WARM";}).length;
+  document.getElementById("cnt-cold").textContent=topics.filter(function(t){return t.p==="COLD";}).length;
+  var c=document.getElementById("cards");
+  c.innerHTML=shown.map(function(t){
+    var realIdx=topics.indexOf(t);
+    var hasK=t.k&&t.k.length>0;
+    var isOpen=!!expanded[realIdx];
+    var yrHTML=YEARS.map(function(y){var v=t.y[y];var hit=v&&v!=="–";return '<span class="yr '+(hit?"hit "+t.p:"miss")+'">'+ y+": "+(v||"–")+"</span>";}).join("");
+    var kpHTML="";
+    if(isOpen&&hasK){kpHTML='<div class="key-points"><div class="kp-label">Key Points</div>'+t.k.map(function(kp){return '<div class="kp-item"><span>›</span><span>'+kp+'</span></div>';}).join("")+'</div>';}
+    var clickAttr=hasK?'onclick="toggle('+realIdx+')" style="cursor:pointer"':'';
+    return '<div class="card '+t.p+'" '+clickAttr+'><div class="card-top"><div style="flex:1"><div class="badges"><span class="badge-pred">'+LABELS[t.p]+'</span><span class="badge-strand">'+t.s+'</span></div><div class="card-title">'+t.t+'</div></div>'+(hasK?'<div class="arrow">'+(isOpen?"▲":"▼")+'</div>':"")+
+    '</div><div class="years">'+yrHTML+'</div><div class="note">'+t.n+'</div>'+kpHTML+'</div>';
+  }).join("");
+}
+render();
+</script>
+</body>
+</html>
